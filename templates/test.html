@@ -1,0 +1,28 @@
+<h2>{{ test.title }}</h2>
+
+Time: <span id="timer">{{ test.time_limit }}</span>
+
+<form method="POST" action="/submit/{{ test.id }}">
+
+{% for q in questions %}
+<p>{{ q.question }}</p>
+
+<input type="radio" name="{{ q.id }}" value="{{ q.o1 }}"> {{ q.o1 }}<br>
+<input type="radio" name="{{ q.id }}" value="{{ q.o2 }}"> {{ q.o2 }}<br>
+<input type="radio" name="{{ q.id }}" value="{{ q.o3 }}"> {{ q.o3 }}<br>
+<input type="radio" name="{{ q.id }}" value="{{ q.o4 }}"> {{ q.o4 }}<br>
+
+{% endfor %}
+
+<button>Submit</button>
+
+</form>
+
+<script>
+let time = {{ test.time_limit }};
+setInterval(()=>{
+document.getElementById("timer").innerText = time;
+time--;
+if(time<0){document.forms[0].submit();}
+},1000);
+</script>
