@@ -116,4 +116,5 @@ def submit(test_id):
 
     return render_template("result.html", score=score, total=len(questions))
 
-app.run(host="0.0.0.0", port=10000)
+if __name__ == "__main__":
+    app.run()
